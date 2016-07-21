@@ -41,6 +41,7 @@ ifeq ($(UNAME_SYS), Darwin)
 		HOMEBREW_LDFLAGS = -L$(HOMEBREW_PREFIX)/opt/boost/lib -L$(HOMEBREW_PREFIX)/opt/icu4c/lib -L$(HOMEBREW_PREFIX)/opt/re2/lib -L$(HOMEBREW_PREFIX)/opt/protobuf/lib -L$(HOMEBREW_PREFIX)/opt/libphonenumber/lib
 		CFLAGS += $(HOMEBREW_CFLAGS)
 		LDFLAGS += $(HOMEBREW_LDFLAGS)
+		CXXFLAGS += $(HOMEBREW_CFLAGS)
 	endif
 endif
 
