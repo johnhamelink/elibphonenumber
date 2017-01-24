@@ -49,15 +49,14 @@
 
 init() ->
     case erlang:system_info(smp_support) of
-        true ->
-            SoName = filename:join(priv_dir(), ?MODULE),
-            case erlang:load_nif(filename:absname(SoName)++"_nif", 0) of 
-                ok -> ok;
-                {error, {reload, _}} -> ok;
-                {error, {upgrade, _}} -> ok
-            end;
-        false ->
-            error(no_smp_support)
+        true -> ok;
+        false -> error_logger:warning_msg("No smp_support detected: the elibphonenumber nif may block the main scheduler, proceed with caution.~n")
+    end,
+    SoName = filename:join(priv_dir(), ?MODULE),
+    case erlang:load_nif(filename:absname(SoName)++"_nif", 0) of
+        ok -> ok;
+        {error, {reload, _}} -> ok;
+        {error, {upgrade, _}} -> ok
     end.
 
 priv_dir() ->
