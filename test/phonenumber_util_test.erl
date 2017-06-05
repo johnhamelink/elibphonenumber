@@ -44,7 +44,7 @@ normalize_digits_only_test() ->
     <<"03456234">> = phonenumber_util:normalize_digits_only(<<"034-56&+a#234">>).
 
 normalize_diallable_chars_only_test() ->
-    <<"03*456+234">> = phonenumber_util:normalize_diallable_chars_only(<<"03*4-56&+a#234">>).
+    <<"03*456+#234">> = phonenumber_util:normalize_diallable_chars_only(<<"03*4-56&+a#234">>).
 
 get_national_significant_number_test() ->
     P1 = phonenumber:new(),
