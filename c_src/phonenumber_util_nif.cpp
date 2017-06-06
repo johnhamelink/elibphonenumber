@@ -247,10 +247,12 @@ static ERL_NIF_TERM phonenumber_validation_result_to_term(PhoneNumberUtil::Valid
         	return ATOMS.atomTooShort;
         case PhoneNumberUtil::TOO_LONG:
         	return ATOMS.atomTooLong;
+       #ifdef LPN_HASLOCALONLY
         case PhoneNumberUtil::IS_POSSIBLE_LOCAL_ONLY:
           return ATOMS.atomIsPossibleLocalOnly;
         case PhoneNumberUtil::INVALID_LENGTH:
           return ATOMS.atomInvalidLength;
+       #endif
     }
 
     return ATOMS.atomInvalidContryCode;
