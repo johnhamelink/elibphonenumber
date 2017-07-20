@@ -11,5 +11,6 @@
     kernel,
     stdlib
   ]},
-  {env, []}
+  {env, []},
+  {exclude_files, ["priv/phonenumber_util_nif.so"]}
 ]}.
