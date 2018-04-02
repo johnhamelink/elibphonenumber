@@ -2,13 +2,15 @@
  [
   {application, "Port driver for libphonenumber"},
   {description, "A port driver for libphonenumber"},
-  {vsn, "0.1.1"},
+  {vsn, "1.0.1"},
   {maintainers, ["John Hamelink"]},
   {links, [{"Github", "https://github.com/johnhamelink/elibphonenumber"}]},
+  {licenses, ["Apache"]},
   {registered, []},
   {applications, [
     kernel,
     stdlib
   ]},
-  {env, []}
+  {env, []},
+  {exclude_files, ["priv/phonenumber_util_nif.so", "c_src/phonenumber_util_nif.o"]}
 ]}.

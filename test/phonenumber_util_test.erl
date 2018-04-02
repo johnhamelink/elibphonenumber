@@ -44,7 +44,7 @@ normalize_digits_only_test() ->
     <<"03456234">> = phonenumber_util:normalize_digits_only(<<"034-56&+a#234">>).
 
 normalize_diallable_chars_only_test() ->
-    <<"03*456+234">> = phonenumber_util:normalize_diallable_chars_only(<<"03*4-56&+a#234">>).
+    <<"03*456+#234">> = phonenumber_util:normalize_diallable_chars_only(<<"03*4-56&+a#234">>).
 
 get_national_significant_number_test() ->
     P1 = phonenumber:new(),
@@ -397,22 +397,22 @@ is_possible_number_with_reason_test() ->
     P1 = phonenumber:new(),
     P11 = phonenumber:set_country_code(1, P1),
     P12 = phonenumber:set_national_number(6502530000, P11),
-    is_possible = phonenumber_util:is_possible_number_with_reason(P12), 
+    is_possible = phonenumber_util:is_possible_number_with_reason(P12),
 
     P2 = phonenumber:new(),
     P21 = phonenumber:set_country_code(1, P2),
     P22 = phonenumber:set_national_number(2530000, P21),
-    is_possible = phonenumber_util:is_possible_number_with_reason(P22),  
+    is_possible_local_only = phonenumber_util:is_possible_number_with_reason(P22),
 
     P3 = phonenumber:new(),
     P31 = phonenumber:set_country_code(0, P3),
     P32 = phonenumber:set_national_number(2530000, P31),
-    invalid_country_code = phonenumber_util:is_possible_number_with_reason(P32), 
+    invalid_country_code = phonenumber_util:is_possible_number_with_reason(P32),
 
     P4 = phonenumber:new(),
     P41 = phonenumber:set_country_code(1, P4),
     P42 = phonenumber:set_national_number(253000, P41),
-    too_short = phonenumber_util:is_possible_number_with_reason(P42), 
+    too_short = phonenumber_util:is_possible_number_with_reason(P42),
 
     P5 = phonenumber:new(),
     P51 = phonenumber:set_country_code(1, P5),

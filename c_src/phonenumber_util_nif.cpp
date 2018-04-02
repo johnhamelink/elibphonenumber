@@ -27,7 +27,9 @@ struct atoms
 	ERL_NIF_TERM atomUnknown;
 
 	ERL_NIF_TERM atomIsPossible;
+  ERL_NIF_TERM atomIsPossibleLocalOnly;
 	ERL_NIF_TERM atomInvalidContryCode;
+  ERL_NIF_TERM atomInvalidLength;
 	ERL_NIF_TERM atomTooShort;
 	ERL_NIF_TERM atomTooLong;
 
@@ -80,7 +82,9 @@ int on_nif_load(ErlNifEnv* env, void** priv_data, ERL_NIF_TERM load_info)
 	ATOMS.atomUnknown = make_atom(env, "unknown");
 
 	ATOMS.atomIsPossible = make_atom(env, "is_possible");
+  ATOMS.atomIsPossibleLocalOnly = make_atom(env, "is_possible_local_only");
 	ATOMS.atomInvalidContryCode = make_atom(env, "invalid_country_code");
+  ATOMS.atomInvalidLength = make_atom(env, "invalid_length");
 	ATOMS.atomTooShort = make_atom(env, "too_short");
 	ATOMS.atomTooLong = make_atom(env, "too_long");
 
@@ -243,6 +247,12 @@ static ERL_NIF_TERM phonenumber_validation_result_to_term(PhoneNumberUtil::Valid
         	return ATOMS.atomTooShort;
         case PhoneNumberUtil::TOO_LONG:
         	return ATOMS.atomTooLong;
+       #ifdef LPN_HASLOCALONLY
+        case PhoneNumberUtil::IS_POSSIBLE_LOCAL_ONLY:
+          return ATOMS.atomIsPossibleLocalOnly;
+        case PhoneNumberUtil::INVALID_LENGTH:
+          return ATOMS.atomInvalidLength;
+       #endif
     }
 
     return ATOMS.atomInvalidContryCode;
