@@ -25,7 +25,7 @@ else ifeq ($(UNAME_SYS), FreeBSD)
 	CXXFLAGS ?= -O3 -finline-functions -Wall
 else ifeq ($(UNAME_SYS), Linux)
 	CC ?= gcc
-	CXXFLAGS ?= -g -O3 -finline-functions -Wall -Werror
+	CXXFLAGS ?= -g -O3 -finline-functions -Wall
 endif
 
 ifeq ($(UNAME_SYS), Darwin)

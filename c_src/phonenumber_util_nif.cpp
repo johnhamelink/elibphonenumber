@@ -465,7 +465,7 @@ static ERL_NIF_TERM GetSupportedRegions_nif(ErlNifEnv* env, int argc, const ERL_
 {
     PhoneNumberUtil *phone_util_ = PhoneNumberUtil::GetInstance();
 
-    set<string> regions;
+    std::set<string> regions;
     phone_util_->GetSupportedRegions(&regions);
     unsigned int cnt = regions.size();
     ERL_NIF_TERM arr[cnt];
@@ -474,7 +474,7 @@ static ERL_NIF_TERM GetSupportedRegions_nif(ErlNifEnv* env, int argc, const ERL_
     ERL_NIF_TERM ret;
     unsigned char *region;
 
-    for (set<string>::iterator it=regions.begin(); it!=regions.end(); ++it, i++)
+    for (std::set<string>::iterator it=regions.begin(); it!=regions.end(); ++it, i++)
     {
         region = enif_make_new_binary(env, it->size(), &ret);
         std::copy(it->begin(), it->end(), region);
@@ -870,7 +870,7 @@ static ERL_NIF_TERM GetRegionCodesForCountryCallingCode_nif(ErlNifEnv* env, int 
 
     PhoneNumberUtil *phone_util_ = PhoneNumberUtil::GetInstance();
 
-    list<string> regions;
+    std::list<string> regions;
 
     phone_util_->GetRegionCodesForCountryCallingCode(code, &regions);
     unsigned int cnt = regions.size();
@@ -880,7 +880,7 @@ static ERL_NIF_TERM GetRegionCodesForCountryCallingCode_nif(ErlNifEnv* env, int 
     ERL_NIF_TERM ret;
     unsigned char *region;
 
-    for (list<string>::iterator it=regions.begin(); it!=regions.end(); ++it, i++)
+    for (std::list<string>::iterator it=regions.begin(); it!=regions.end(); ++it, i++)
     {
         region = enif_make_new_binary(env, it->size(), &ret);
         std::copy(it->begin(), it->end(), region);
